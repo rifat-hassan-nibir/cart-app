@@ -16,16 +16,18 @@ const productDetails = [
     price: 30,
     quantity: 1,
   },
+  {
+    id: 3,
+    title: "Product 2",
+    image: "./assets/woocommerce-placeholder-300x300.png",
+    price: 50,
+    quantity: 1,
+  },
 ];
 
-let totalItemsCount = productDetails.length;
+let totalItemsCount = productDetails.reduce((initiatlCount, product) => initiatlCount + product.quantity, 0);
 
 let totalPrice = productDetails.reduce((initialPrice, product) => initialPrice + product.price, 0);
-
-let productQuantity = productDetails.reduce(
-  (initialQuantity, product) => initialQuantity + product.quantity,
-  productDetails.map((product) => product.quantity)
-);
 
 // cart container
 const cartContainer = document.createElement("div");
@@ -99,7 +101,7 @@ cartDetailsContainer.innerHTML = `
                         <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                     </svg>
                 </div>
-                <p>${productDetails.length} ${productDetails.length === 0 || productDetails.length === 1 ? "item" : "items"}</p>
+                <p>${totalItemsCount} items</p>
             </div>
             <button id="close-cart">Close</button>
         </div>
@@ -117,7 +119,7 @@ function updateCartUI() {
   document.querySelector(".cart-body").innerHTML = generateProductDetailsHTML(productDetails);
   document.querySelector(".cart-header-left p").innerText = `${productDetails.length} items`;
 
-  //   Update total items quantity
+  // Update total items quantity
   updateTotalItemsQuantity();
 
   // Update total price in both the price section and checkout button
@@ -147,6 +149,9 @@ function updateTotalItemsQuantity() {
 
   // update the cart container total items count
   document.querySelector(".cart-items h4").innerText = `${totalItemsCount} items`;
+
+  // Update the cart details total items count
+  document.querySelector(".cart-header-left p").innerText = `${totalItemsCount} items`;
 }
 
 // Handle increase/decrease of product quantity
