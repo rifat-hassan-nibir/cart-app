@@ -4,7 +4,7 @@
 const productDetails = [
   {
     id: 1,
-    title: "Product 1",
+    title: "Product 1 is a very very long title",
     image: "./assets/woocommerce-placeholder-300x300.png",
     price: 20,
     quantity: 1,
