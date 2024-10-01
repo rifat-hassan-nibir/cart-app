@@ -194,11 +194,19 @@ body {
 }
 
 .product-quantity button {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  background-color: #fff;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
   cursor: pointer;
+}
+
+.product-quantity button img {
+  width: 18px;
+  height: 18px;
 }
 
 .remove-btn {

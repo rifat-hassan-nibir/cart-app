@@ -71,9 +71,13 @@ function generateProductDetailsHTML(products) {
       (product) => `
         <div class="product" data-id="${product.id}">
             <div class="product-quantity">
-                <button class="increase-btn" data-id="${product.id}">&uarr;</button>
+                <button class="increase-btn" data-id="${product.id}">
+                    <img src="/assets/arrow-up.png" data-id="${product.id}"/>
+                </button>
                 <span>${product.quantity}</span>
-                <button class="decrease-btn" data-id="${product.id}">&darr;</button>
+                <button class="decrease-btn" data-id="${product.id}">
+                   <img src="/assets/arrow-down.png" data-id="${product.id}"/>
+                </button>
             </div>
             <div class="product-image">
                 <img src="${product.image}" alt="${product.title}">
