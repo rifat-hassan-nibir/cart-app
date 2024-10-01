@@ -89,8 +89,41 @@ function generateProductDetailsHTML(products) {
     .join("");
 }
 
-// Set the inner HTML for the cart details container with product details
-cartDetailsContainer.innerHTML = `
+// Set cart details in DOM if the cart is empty
+function setInitialEmptyCartDOM() {
+  return `
+    <div class="cart-details-content">
+        <div class="cart-header">
+            <div class="cart-header-left">
+                <div class="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
+                        <circle cx="8" cy="21" r="1"/>
+                        <circle cx="19" cy="21" r="1"/>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                </div>
+                <p>0 items</p>
+            </div>
+            <button id="close-cart">Close</button>
+        </div>
+        <div class="empty-cart-body">
+            <p>Your cart is currently empty.</p>
+            <div class="empty-cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
+                    <circle cx="8" cy="21" r="1"/>
+                    <circle cx="19" cy="21" r="1"/>
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    `;
+}
+
+// Set cart details in DOM if cart is not empty
+function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
+  return `
     <div class="cart-details-content">
         <div class="cart-header">
             <div class="cart-header-left">
@@ -113,6 +146,18 @@ cartDetailsContainer.innerHTML = `
         </div>
     </div>
 `;
+}
+
+// Set the inner HTML for the cart details container
+function renderCartDetails() {
+  if (totalItemsCount > 0) {
+    cartDetailsContainer.innerHTML = setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice);
+  } else {
+    cartDetailsContainer.innerHTML = setInitialEmptyCartDOM();
+  }
+}
+
+renderCartDetails();
 
 // Function to update the cart UI after quantity changes
 function updateCartUI() {
@@ -124,6 +169,8 @@ function updateCartUI() {
 
   // Update total price in both the price section and checkout button
   updateTotalPrice();
+
+  renderCartDetails();
 
   // Reattach event listeners after UI updates
   attachEventListeners();

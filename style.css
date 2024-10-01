@@ -208,3 +208,27 @@ body {
   font-size: 24px;
   cursor: pointer;
 }
+
+/* EMPTY CART STYLES  */
+/* Empty Cart Styling */
+
+.empty-cart-body {
+  margin-top: 30%;
+}
+
+.empty-cart-body p {
+  font-size: 18px;
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+.empty-cart-icon {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.empty-cart-icon svg {
+  color: #ccc;
+}
