@@ -1,5 +1,6 @@
 body {
   position: relative;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Style the cart container */
@@ -106,9 +107,14 @@ body {
 }
 
 .cart-header-bottom {
-  background: skyblue;
+  background: #cde9f7;
   padding: 12px 30px;
   text-align: center;
+}
+
+.cart-header-bottom p {
+  font-size: 14px;
+  line-height: 16px;
 }
 
 /* Close button */
@@ -123,7 +129,6 @@ body {
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: inherit;
   border: none;
   cursor: pointer;
   background-color: #00000026;
@@ -168,8 +173,13 @@ body {
 .product {
   display: flex;
   padding: 15px 30px;
-  align-items: center;
   border-bottom: 1px solid #eee;
+}
+
+.product-image img {
+  width: 100px;
+  object-fit: cover;
+  display: block;
 }
 
 .product-quantity {
@@ -181,6 +191,8 @@ body {
 .product-quantity p {
   display: flex;
   justify-content: end;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .product-quantity button {
@@ -204,39 +216,67 @@ body {
   opacity: 1;
 }
 
-.product-image img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+.product-increase-decrease {
+  display: flex;
+  background-color: #eeeeee;
+  border-radius: 3px;
+}
+
+.product-increase-decrease .decrease-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-increase-decrease span {
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-increase-decrease .increase-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between !important;
   margin-left: 16px;
   flex-grow: 1;
-}
-
-.product-info h5 {
-  text-align: left;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-  flex: 1;
-}
-
-.product-info p {
-  text-align: left;
-  margin: 0;
-  font-weight: 400;
-  font-size: 14px;
-  flex: 1;
 }
 
 .product-details {
   display: flex;
   justify-content: space-between;
+  align-items: start;
+}
+
+.product-title-price h5 {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: left;
+  margin: 0;
+  flex: 1;
+}
+
+.product-title-price p {
+  text-align: left;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+  margin-top: 3px !important;
+  margin-bottom: 7px !important;
 }
 
 .remove-btn {

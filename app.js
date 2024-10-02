@@ -4,14 +4,14 @@
 const productDetails = [
   {
     id: 1,
-    title: "Product 1 is a very very long title",
+    title: "Sony Headphone G2",
     image: "./assets/headphone.jpg",
     price: 20,
     quantity: 1,
   },
   {
     id: 2,
-    title: "Product 2",
+    title: "Apple Headphone M3",
     image: "./assets/headphone2.jpeg",
     price: 30,
     quantity: 1,
@@ -74,8 +74,9 @@ function generateProductDetailsHTML(products) {
 
             <div class="product-info">
               <div class="product-details">
-                <div>
+                <div class="product-title-price">
                   <h5>${product.title}</h5>
+                  <p>$${product.price}</p>
                 </div>
                 <button class="remove-btn" data-id="${product.id}">
                   <img src="/assets/trash-bin.png" data-id="${product.id}"/>
@@ -84,14 +85,10 @@ function generateProductDetailsHTML(products) {
                 
 
               <div class="product-quantity">
-                <div>
-                  <button class="increase-btn" data-id="${product.id}">
-                    <img src="/assets/arrow-up.png" data-id="${product.id}"/>
-                  </button>
+                <div class="product-increase-decrease">
+                  <button class="decrease-btn" data-id="${product.id}">-</button>
                   <span>${product.quantity}</span>
-                  <button class="decrease-btn" data-id="${product.id}">
-                    <img src="/assets/arrow-down.png" data-id="${product.id}"/>
-                  </button>
+                  <button class="increase-btn" data-id="${product.id}">+</button>
                 </div>
                 <p>$${(product.price * product.quantity).toFixed(2)}</p>
               </div>
