@@ -29,24 +29,24 @@ let totalItemsCount = productDetails.reduce((initialCount, product) => initialCo
 
 let totalPrice = productDetails.reduce((initialPrice, product) => initialPrice + product.price, 0);
 
-// cart container
-const cartContainer = document.createElement("div");
-// cart details container
+// cart button
+const cartButton = document.createElement("div");
+// cart details button
 const cartDetailsContainer = document.createElement("div");
 // cart overlay
 const cartOverlay = document.createElement("div");
 
-cartContainer.id = "cart-container";
+cartButton.id = "cart-button";
 cartDetailsContainer.id = "cart-details";
 cartOverlay.id = "cart-overlay";
 
-// Append the cart container, cart details container, and overlay to the body
-document.body.appendChild(cartContainer);
+// Append the cart button, cart details button, and overlay to the body
+document.body.appendChild(cartButton);
 document.body.appendChild(cartOverlay);
 document.body.appendChild(cartDetailsContainer);
 
 // Set the inner HTML for the cart
-cartContainer.innerHTML = `
+cartButton.innerHTML = `
     <div class="cart-top">
         <div class="cart-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
@@ -152,7 +152,7 @@ function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
 `;
 }
 
-// Set the inner HTML for the cart details container
+// Set the inner HTML for the cart details button
 function renderCartDetails() {
   if (totalItemsCount > 0) {
     cartDetailsContainer.innerHTML = setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice);
@@ -199,7 +199,7 @@ function updateTotalPrice() {
 function updateTotalItemsQuantity() {
   totalItemsCount = productDetails.reduce((initialQuantity, product) => initialQuantity + product.quantity, 0);
 
-  // update the cart container total items count
+  // update the cart button total items count
   document.querySelector(".cart-items h4").innerText = `${totalItemsCount} items`;
 }
 
@@ -257,7 +257,7 @@ attachEventListeners();
 attachCloseCartListeners(); // Ensure the close button and overlay listeners are attached
 
 // Toggle cart visibility when cart icon is clicked
-cartContainer.addEventListener("click", () => {
+cartButton.addEventListener("click", () => {
   cartDetailsContainer.classList.add("active");
   cartOverlay.classList.add("active");
 });
