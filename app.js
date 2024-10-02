@@ -25,7 +25,7 @@ const productDetails = [
   },
 ];
 
-let totalItemsCount = productDetails.reduce((initiatlCount, product) => initiatlCount + product.quantity, 0);
+let totalItemsCount = productDetails.reduce((initialCount, product) => initialCount + product.quantity, 0);
 
 let totalPrice = productDetails.reduce((initialPrice, product) => initialPrice + product.price, 0);
 
@@ -178,6 +178,7 @@ function updateCartUI() {
 
   // Reattach event listeners after UI updates
   attachEventListeners();
+  attachCloseCartListeners(); // Reattach the close button and overlay listeners
 }
 
 // Function to update total price
@@ -200,67 +201,63 @@ function updateTotalItemsQuantity() {
 
   // update the cart container total items count
   document.querySelector(".cart-items h4").innerText = `${totalItemsCount} items`;
-
-  // Update the cart details total items count
-  document.querySelector(".cart-header-left p").innerText = `${totalItemsCount} items`;
 }
 
-// Handle increase/decrease of product quantity
+// Attach event listeners to increase, decrease, and remove buttons
 function attachEventListeners() {
   document.querySelectorAll(".increase-btn").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const productId = e.target.dataset.id;
-      const product = productDetails.find((p) => p.id == productId);
-      product.quantity += 1;
-      updateCartUI();
+    button.addEventListener("click", (event) => {
+      const productId = parseInt(event.currentTarget.getAttribute("data-id"));
+      const product = productDetails.find((p) => p.id === productId);
+      if (product) {
+        product.quantity++;
+        updateCartUI();
+      }
     });
   });
 
   document.querySelectorAll(".decrease-btn").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const productId = e.target.dataset.id;
-      const product = productDetails.find((p) => p.id == productId);
-      if (product.quantity > 1) {
-        product.quantity -= 1;
+    button.addEventListener("click", (event) => {
+      const productId = parseInt(event.currentTarget.getAttribute("data-id"));
+      const product = productDetails.find((p) => p.id === productId);
+      if (product && product.quantity > 1) {
+        product.quantity--;
+        updateCartUI();
       }
-      updateCartUI();
     });
   });
 
-  // Handle remove button
   document.querySelectorAll(".remove-btn").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const productId = e.target.dataset.id;
-      const productIndex = productDetails.findIndex((p) => p.id == productId);
-
-      if (productIndex !== -1) {
-        // Remove the product from the array
+    button.addEventListener("click", (event) => {
+      const productId = parseInt(event.currentTarget.getAttribute("data-id"));
+      const productIndex = productDetails.findIndex((p) => p.id === productId);
+      if (productIndex > -1) {
         productDetails.splice(productIndex, 1);
+        updateCartUI();
       }
-
-      // Update the cart UI after removing the product
-      updateCartUI();
     });
+  });
+}
+
+// Attach event listeners to close the cart
+function attachCloseCartListeners() {
+  document.getElementById("close-cart").addEventListener("click", () => {
+    cartDetailsContainer.classList.remove("active");
+    cartOverlay.classList.remove("active");
+  });
+
+  cartOverlay.addEventListener("click", () => {
+    cartDetailsContainer.classList.remove("active");
+    cartOverlay.classList.remove("active");
   });
 }
 
 // Initial call to attach event listeners
 attachEventListeners();
+attachCloseCartListeners(); // Ensure the close button and overlay listeners are attached
 
-// Handle opening the cart details container
+// Toggle cart visibility when cart icon is clicked
 cartContainer.addEventListener("click", () => {
   cartDetailsContainer.classList.add("active");
   cartOverlay.classList.add("active");
-});
-
-// Handle closing the cart details container via the close button
-document.getElementById("close-cart").addEventListener("click", () => {
-  cartDetailsContainer.classList.remove("active");
-  cartOverlay.classList.remove("active");
-});
-
-// Handle closing the cart details container via clicking on the overlay
-cartOverlay.addEventListener("click", () => {
-  cartDetailsContainer.classList.remove("active");
-  cartOverlay.classList.remove("active");
 });
