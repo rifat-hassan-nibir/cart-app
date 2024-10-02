@@ -38,9 +38,9 @@ body {
   align-items: center;
 }
 
-.cart-icon svg {
-  width: 20px;
-  height: 20px;
+.cart-icon {
+  width: 21px;
+  height: 21px;
 }
 
 /* Overlay that darkens the background */
@@ -104,13 +104,21 @@ body {
 
 .cart-header-left {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: start;
+  gap: 4px;
 }
 
 .cart-header-left p {
-  font-size: 18px;
+  font-size: 13px;
   font-weight: bold;
+  background-color: black;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-header-bottom {
@@ -160,7 +168,7 @@ body {
   padding-bottom: 20px;
 }
 
-.cart-footer div {
+.cart-footer .cart-subtotal {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -343,4 +351,9 @@ body {
 
 .empty-cart-icon svg {
   color: #ccc;
+}
+
+.payment-gateway {
+  width: 100%;
+  margin-top: 4px;
 }

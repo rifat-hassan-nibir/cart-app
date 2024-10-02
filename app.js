@@ -5,6 +5,8 @@ const productDetails = [
   {
     id: 1,
     title: "Sony Headphone G2",
+    size: "Small",
+    color: "Maroon",
     image: "./assets/headphone.jpg",
     price: 20,
     quantity: 1,
@@ -106,12 +108,12 @@ function setInitialEmptyCartDOM() {
         <div class="cart-header">
             <div class="cart-header-left">
                 <div class="cart-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                   </svg>
 
                 </div>
-                <p>0 items</p>
+                <p>0</p>
             </div>
             <button id="close-cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/>
@@ -142,7 +144,7 @@ function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                   </svg>
                 </div>
-                <p>${totalItemsCount} items</p>
+                <p>${totalItemsCount}</p>
             </div>
             <button id="close-cart">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -155,11 +157,12 @@ function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
             ${generateProductDetailsHTML(productDetails)}
         </div>
         <div class="cart-footer">
-            <div>
+            <div class="cart-subtotal">
               <p>Subtotal</p>
               <p>$${totalPrice.toFixed(2)}</p>
             </div>
             <button class="checkout-btn">Checkout</button>
+            <img class="payment-gateway" src="/assets/payment-gateway.png"/>
         </div>
     </div>
 `;
