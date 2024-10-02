@@ -5,21 +5,21 @@ const productDetails = [
   {
     id: 1,
     title: "Product 1 is a very very long title",
-    image: "./assets/woocommerce-placeholder-300x300.png",
+    image: "./assets/headphone.jpg",
     price: 20,
     quantity: 1,
   },
   {
     id: 2,
     title: "Product 2",
-    image: "./assets/woocommerce-placeholder-300x300.png",
+    image: "./assets/headphone2.jpeg",
     price: 30,
     quantity: 1,
   },
   {
     id: 3,
     title: "Product 2",
-    image: "./assets/woocommerce-placeholder-300x300.png",
+    image: "./assets/headphone.jpg",
     price: 50,
     quantity: 1,
   },
@@ -49,10 +49,8 @@ document.body.appendChild(cartDetailsContainer);
 cartButton.innerHTML = `
     <div class="cart-top">
         <div class="cart-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
-                <circle cx="8" cy="21" r="1"/>
-                <circle cx="19" cy="21" r="1"/>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
         </div>
         <div class="cart-items">
@@ -70,23 +68,34 @@ function generateProductDetailsHTML(products) {
     .map(
       (product) => `
         <div class="product" data-id="${product.id}">
-            <div class="product-quantity">
-                <button class="increase-btn" data-id="${product.id}">
-                    <img src="/assets/arrow-up.png" data-id="${product.id}"/>
-                </button>
-                <span>${product.quantity}</span>
-                <button class="decrease-btn" data-id="${product.id}">
-                   <img src="/assets/arrow-down.png" data-id="${product.id}"/>
-                </button>
-            </div>
             <div class="product-image">
                 <img src="${product.image}" alt="${product.title}">
             </div>
+
             <div class="product-info">
-                <h5>${product.title}</h5>
+              <div class="product-details">
+                <div>
+                  <h5>${product.title}</h5>
+                </div>
+                <button class="remove-btn" data-id="${product.id}">
+                  <img src="/assets/trash-bin.png" data-id="${product.id}"/>
+                </button>
+              </div>
+                
+
+              <div class="product-quantity">
+                <div>
+                  <button class="increase-btn" data-id="${product.id}">
+                    <img src="/assets/arrow-up.png" data-id="${product.id}"/>
+                  </button>
+                  <span>${product.quantity}</span>
+                  <button class="decrease-btn" data-id="${product.id}">
+                    <img src="/assets/arrow-down.png" data-id="${product.id}"/>
+                  </button>
+                </div>
                 <p>$${(product.price * product.quantity).toFixed(2)}</p>
+              </div>
             </div>
-            <button class="remove-btn" data-id="${product.id}">×</button>
         </div>
       `
     )
@@ -100,24 +109,24 @@ function setInitialEmptyCartDOM() {
         <div class="cart-header">
             <div class="cart-header-left">
                 <div class="cart-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
-                        <circle cx="8" cy="21" r="1"/>
-                        <circle cx="19" cy="21" r="1"/>
-                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                  </svg>
+
                 </div>
                 <p>0 items</p>
             </div>
-            <button id="close-cart">Close</button>
+            <button id="close-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+              </svg>
+            </button>
         </div>
         <div class="empty-cart-body">
             <p>Your cart is currently empty.</p>
             <div class="empty-cart-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
-                    <circle cx="8" cy="21" r="1"/>
-                    <circle cx="19" cy="21" r="1"/>
-                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                  </svg>
             </div>
         </div>
     </div>
@@ -132,15 +141,18 @@ function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
         <div class="cart-header">
             <div class="cart-header-left">
                 <div class="cart-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart">
-                        <circle cx="8" cy="21" r="1"/>
-                        <circle cx="19" cy="21" r="1"/>
-                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                  </svg>
                 </div>
                 <p>${totalItemsCount} items</p>
             </div>
-            <button id="close-cart">Close</button>
+            <button id="close-cart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+        <div class="cart-header-bottom">
+          <p>These Products are limited</p>
         </div>
         <div class="cart-body">
             ${generateProductDetailsHTML(productDetails)}
