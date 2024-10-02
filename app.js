@@ -155,7 +155,11 @@ function setInitialCartDetailsDOM(totalItemsCount, productDetails, totalPrice) {
             ${generateProductDetailsHTML(productDetails)}
         </div>
         <div class="cart-footer">
-            <button class="checkout-btn">Checkout $ ${totalPrice.toFixed(2)}</button>
+            <div>
+              <p>Subtotal</p>
+              <p>$${totalPrice.toFixed(2)}</p>
+            </div>
+            <button class="checkout-btn">Checkout</button>
         </div>
     </div>
 `;
