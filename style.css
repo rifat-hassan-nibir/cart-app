@@ -32,7 +32,7 @@ body {
 .cart-top {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   background-color: black;
   color: white;
   padding: 12px 20px;
@@ -115,6 +115,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.empty-cart-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.empty-cart-icon svg {
+  width: 40%;
 }
 
 /* Cart header with close button */
@@ -343,23 +353,19 @@ body {
   background-color: transparent;
   cursor: pointer;
   border: none;
+  opacity: 0.5;
 }
 
 .remove-btn img {
   width: 13px;
   height: 13px;
-  opacity: 0.5;
 }
 
-.remove-btn img:hover {
+.remove-btn:hover {
   opacity: 1;
 }
 
 /* EMPTY CART STYLES  */
-
-.empty-cart-body {
-  margin-top: 30%;
-}
 
 .empty-cart-body p {
   font-size: 18px;
